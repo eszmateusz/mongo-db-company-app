@@ -26,16 +26,16 @@ router.get('/employees/:id', (req, res) => {
 });
 
 router.post('/employees', (req, res) => {
-  const { name } = req.body;
-  req.db.collection('employees').insertOne({ name: name }, err => {
+  const { firstName, lastName, department } = req.body;
+  req.db.collection('employees').insertOne({ firstName: firstName, lastName: lastName, department: department }, err => {
     if(err) res.status(500).json({ message: err });
     else res.json({ message: 'OK' });
   });
 });
 
 router.put('/employees/:id', (req, res) => {
-  const { name } = req.body;
-  req.db.collection('employees').updateOne({ _id: ObjectId(req.params.id) }, { $set: { name: name }}, err => {
+  const { firstName, lastName, department } = req.body;
+  req.db.collection('employees').updateOne({ _id: ObjectId(req.params.id) }, { $set: { firstName: firstName, lastName: lastName, department: department } }, err => {
     if(err) res.status(500).json({ message: err });
     else res.json({ message: 'OK' });
   });
