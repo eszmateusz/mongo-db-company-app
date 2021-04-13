@@ -14,8 +14,11 @@ exports.getRandom = async (req, res) => {
     const rand = Math.floor(Math.random() * count);
     const emp = await Employee.findOne().skip(rand).populate('department');
 
-    if (!emp) res.status(404).json({ message: 'Not found...' });
-    else res.json(emp);
+    if (!emp) {
+      res.status(404).json({ message: 'Not found...' });
+    } else {
+      res.json(emp);
+    }
   } catch (err) {
     res.status(500).json({ message: err });
   }
@@ -25,8 +28,11 @@ exports.getById = async (req, res) => {
   try {
     const emp = await Employee.findById(req.params.id).populate('department');
 
-    if (!emp) res.status(404).json({ message: 'Not found...' });
-    else res.json(emp);
+    if (!emp) {
+      res.status(404).json({ message: 'Not found...' });
+    } else {
+      res.json(emp);
+    }
   } catch (err) {
     res.status(500).json({ message: err });
   }

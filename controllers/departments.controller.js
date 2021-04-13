@@ -14,8 +14,11 @@ exports.getRandom = async (req, res) => {
     const rand = Math.floor(Math.random() * count);
     const dep = await Department.findOne().skip(rand);
 
-    if (!dep) res.status(404).json({ message: 'Not found' });
-    else res.json(dep);
+    if (!dep) { 
+      res.status(404).json({ message: 'Not found...' });
+    } else { 
+      res.json(dep);
+    }
   } catch (err) {
     res.json({ message: err });
   }
@@ -25,8 +28,11 @@ exports.getById = async (req, res) => {
   try {
     const dep = await Department.findById(req.params.id);
 
-    if (!dep) res.status(404).json({ message: 'Not found' });
-    else res.json(dep);
+    if (!dep) {
+      res.status(404).json({ message: 'Not found...' });
+    } else {
+      res.json(dep);
+    }
   } catch (err) {
     res.status(500).json({ message: err });
   }
