@@ -1,1 +1,1 @@
-# mongoDB-company-app
+# mongo-db-company-app
