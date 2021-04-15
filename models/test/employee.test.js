@@ -34,6 +34,14 @@ describe('Employee', () => {
         expect(err.errors).to.exist;
       });
     }
+  });
+
+  it('should not throw an error if data are okay', () => {
+    const [firstName, lastName, department] = ['Emma', 'Cowell', 'Testing'];
+    const emp = new Employee({ firstName: firstName, lastName: lastName, department: department });
+    emp.validate(err => {
+      expect(err).to.not.exist;
+    });
   })
 });
 
